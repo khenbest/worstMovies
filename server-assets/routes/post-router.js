@@ -62,22 +62,6 @@ router.put('/:id', (req, res, next) => {
         })
 })
 
-router.put('/:id', (req, res, next) => {
-    Comments.findById(req.params.id)
-        .then(comment => {
-            comment.subcomments.push(req.body)
-            comment.save(err => {
-                if (err) {
-                    res.status(400).send('failure')
-                }
-                res.status(200).send('success')
-            })
-        })
-        .then(() => res.send("Subcomment Added"))
-        .catch(next)
-})
-
-
 router.delete('/:id', (req, res, next) => {
     Post.findById(req.params.id)
         .then(post => {
